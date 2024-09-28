@@ -16,6 +16,7 @@ public class SaludoFrame extends javax.swing.JFrame {
      * Creates new form SaludoFrame
      */
     public SaludoFrame() {
+        setLocationRelativeTo(null);
         initComponents();
     }
 
@@ -34,6 +35,7 @@ public class SaludoFrame extends javax.swing.JFrame {
         botonSaludo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/saluda.png"))); // NOI18N
 
@@ -72,7 +74,7 @@ public class SaludoFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(222, 222, 222)
                         .addComponent(botonSaludo)))
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,7 +87,7 @@ public class SaludoFrame extends javax.swing.JFrame {
                 .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botonSaludo)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         pack();
