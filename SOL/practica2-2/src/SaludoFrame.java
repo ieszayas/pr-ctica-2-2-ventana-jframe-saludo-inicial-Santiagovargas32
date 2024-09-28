@@ -5,7 +5,6 @@ import javax.swing.JOptionPane;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author Santiago
@@ -33,11 +32,13 @@ public class SaludoFrame extends javax.swing.JFrame {
         nombre = new javax.swing.JLabel();
         usuario = new javax.swing.JTextField();
         botonSaludo = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        Apellido = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/saluda.png"))); // NOI18N
+        imagen.setIcon(new javax.swing.ImageIcon("F:\\GitHub\\pr-ctica-2-2-ventana-jframe-saludo-inicial-Santiagovargas32\\SOL\\practica2-2\\src\\saluda.png")); // NOI18N
 
         nombre.setText("Introduce tu nombre: ");
 
@@ -55,26 +56,38 @@ public class SaludoFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Introduce tus apellidos:");
+
+        Apellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ApellidoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(129, 129, 129))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(169, 169, 169)
-                        .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(240, 240, 240)
                         .addComponent(imagen))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(222, 222, 222)
-                        .addComponent(botonSaludo)))
-                .addContainerGap(202, Short.MAX_VALUE))
+                        .addComponent(botonSaludo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(129, 129, 129)
+                        .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(95, 95, 95))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,12 +95,16 @@ public class SaludoFrame extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(imagen)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(Apellido))
+                .addGap(18, 18, 18)
                 .addComponent(botonSaludo)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         pack();
@@ -100,9 +117,37 @@ public class SaludoFrame extends javax.swing.JFrame {
     private void botonSaludoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSaludoActionPerformed
         // TODO add your handling code here:çç
         String nombre = usuario.getText();
-        JOptionPane.showMessageDialog(this, "Hola, " + nombre);
+        String apellidos = Apellido.getText();
 
+        // Validar que los campos no estén vacíos
+        if (nombre.isEmpty() || apellidos.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, rellena ambos campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Validar que el nombre tenga al menos 5 caracteres
+        if (nombre.length() < 5) {
+            JOptionPane.showMessageDialog(this, "El nombre debe tener al menos 5 caracteres.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Validar que el nombre no contenga números
+        if (nombre.matches(".*\\d.*") || apellidos.matches(".*\\d.*")) {
+            JOptionPane.showMessageDialog(this, "El nombre y los apellidos no pueden contener números.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Mostrar el saludo si todo está correcto
+        JOptionPane.showMessageDialog(this, "Hola, " + nombre + " " + apellidos);
+
+        // Limpiar los campos después de saludar
+        usuario.setText("");
+        Apellido.setText("");
     }//GEN-LAST:event_botonSaludoActionPerformed
+
+    private void ApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ApellidoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,8 +185,10 @@ public class SaludoFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Apellido;
     private javax.swing.JButton botonSaludo;
     private javax.swing.JLabel imagen;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel nombre;
     private javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables
