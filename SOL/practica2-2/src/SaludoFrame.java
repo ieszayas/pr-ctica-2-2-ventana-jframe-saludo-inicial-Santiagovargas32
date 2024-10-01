@@ -15,8 +15,8 @@ public class SaludoFrame extends javax.swing.JFrame {
      * Creates new form SaludoFrame
      */
     public SaludoFrame() {
-        setLocationRelativeTo(null);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -115,7 +115,7 @@ public class SaludoFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_usuarioActionPerformed
 
     private void botonSaludoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSaludoActionPerformed
-        // TODO add your handling code here:çç
+        // TODO add your handling code here:
         String nombre = usuario.getText();
         String apellidos = Apellido.getText();
 
